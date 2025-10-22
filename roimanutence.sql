@@ -67,15 +67,13 @@ CREATE TABLE fornecedores(
 );
 
 --itensReparo
-CREATE TABLE itensReparo(
+CREATE TABLE itens(
 	id_item INT PRIMARY KEY AUTO_INCREMENT,
-    id_reparo INT,
     nome_peca VARCHAR(100) NOT NULL,
     quantidade INT NOT NULL,
     custo_unitario DECIMAL(10,2) NOT NULL,
     id_fornecedor INT,
     FOREIGN KEY (id_fornecedor) REFERENCES fornecedores (id_fornecedor),
-    FOREIGN KEY (id_reparo) REFERENCES reparos (id_reparo)
 );
 
 --reparos
@@ -97,6 +95,15 @@ CREATE TABLE reparos(
     FOREIGN KEY (id_usuario) REFERENCES usuarios (id_usuario),
     FOREIGN KEY (id_item) REFERENCES itensreparo (id_item)
 );
+
+CREATE TABLE itensReparo(
+	id_itemreparo INT PRIMARY KEY AUTO_INCREMENT,
+	id_item INT,
+	id_reparo INT,
+	FOREIGN KEY(id_item) REFERENCES itens (id_item),
+	FOREIGN KEY(id_reparo) REFERENCES reparos (id_reparo)
+	);
+
 --------------------------------------------------------------------
 --------------------------Populando Banco---------------------------
 --------------------------------------------------------------------
